@@ -10,7 +10,7 @@ const Mainnav = () => {
             <a href="">Logo</a>
           </div>
           <div className="flex gap-3">
-            <img src="src/assets/react.svg" alt="" className="rounded-full" />
+            <img src="src/assets/react.svg" alt="userPhoto" className="rounded-full" />
             <h4>Username</h4>
           </div>
         </nav>      
