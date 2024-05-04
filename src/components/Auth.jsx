@@ -7,7 +7,7 @@ import { useState } from 'react';
 const Auth = () => {
     const redirect=async()=>{
         const googleURL="https://roomie-app-325b.onrender.com/goauth";
-        const googleWindow=window.open(googleURL, "blank")
+        const googleWindow=window.open(googleURL, "_blank", "width=400,height=400")
     }
   return (
     <>
