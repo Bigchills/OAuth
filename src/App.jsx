@@ -5,17 +5,17 @@ import Auth from './components/Auth'
 import SignIn from './Pages/SignIn'
 import Homepage from './Pages/Homepage'
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 
 const App = () => {
-  const user=false;
   return (
     <BrowserRouter>
-      <>
-        <Navbar/>
+      <>     
         <Routes>
-          <Route path='/' element={<Homepage/>}/>
-          <Route path='/signin' element={<SignIn/>}/>
+          <Route path='/' element={<SignIn/>}/>
+          <Route path='/home' element={<Homepage/>}/>
         </Routes>       
       </>
     </BrowserRouter>

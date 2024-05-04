@@ -6,6 +6,7 @@ import Auth from '../components/Auth'
 const SignIn = () => {
   return (
     <div>
+        <Navbar/>
         <Hero/>
         <Auth/>    
     </div>
