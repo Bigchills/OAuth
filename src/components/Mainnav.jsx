@@ -9,9 +9,13 @@ const Mainnav = () => {
           <div className="font-semibold">
             <a href="">Logo</a>
           </div>
-          <div className="flex gap-3">
-            <img src="src/assets/react.svg" alt="userPhoto" className="rounded-full max-w-6 bg-white" />
+          <div className="flex gap-4 items-center min-w-6">
+            <div className="rounded-full">
+            <img src="src/assets/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
+            </div>
+            <div>
             <h5>Username</h5>
+            </div>
           </div>
         </nav>      
     </div>
