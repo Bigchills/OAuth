@@ -8,7 +8,7 @@ const Homepage = () => {
     <div>
       <Mainnav/>
       <div>
-        <h1 className="text-5xl font-bold text-center">
+        <h1 className="text-4xl font-bold text-center mt-48">
           WELCOME TO HOMEPAGE
         </h1>
       </div>

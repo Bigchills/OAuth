@@ -1,6 +1,6 @@
 import React from 'react'
 
-const hero = () => {
+const start = () => {
   return (
     <div className="text-center mt-8 leading-3 w-3/4 mx-auto">
         <h1 className="text-2xl font-semibold">
@@ -10,4 +10,4 @@ const hero = () => {
   )
 }
 
-export default hero
+export default start
