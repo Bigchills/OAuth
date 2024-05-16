@@ -16,6 +16,11 @@ const Mainnav = () => {
             <div>
             <h5>Username</h5>
             </div>
+            <div>
+              <button>
+                logout
+              </button>
+            </div>
           </div>
         </nav>      
     </div>

@@ -7,8 +7,9 @@ import { useState } from 'react';
 const Auth = () => {
     const redirect=async()=>{
         const googleURL="https://roomie-app-325b.onrender.com/goauth";
-        const googleWindow=window.open(googleURL, "_blank", "width=400,height=400")
+        const googleWindow=window.open(googleURL, "blank")
     }
+
   return (
     <>
     <div className=" mt-20 w-3/4 mx-auto border-black space-y-2
@@ -19,7 +20,6 @@ const Auth = () => {
                 Join Today!
             </h2>
         </div>
-
         <div className="flex flex-col font-semibold py-4 px-2 space-y-2 ">
             <button className='border rounded-md py-4 px-2  hover:bg-black hover:text-white' onClick={redirect} >
                 <a href="" className="flex items-center gap-1">

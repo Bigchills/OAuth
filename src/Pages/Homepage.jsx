@@ -1,5 +1,6 @@
 import React from 'react'
 import Mainnav from '../components/Mainnav'
+import Bottomnav from '../components/Bottomnav'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -12,7 +13,9 @@ const Homepage = () => {
           WELCOME TO HOMEPAGE
         </h1>
       </div>
+      <Bottomnav/>
       
+
     </div>
   )
 }
