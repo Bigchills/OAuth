@@ -1,6 +1,7 @@
 import React from 'react'
 import Mainnav from '../components/Mainnav'
 import Bottomnav from '../components/Bottomnav'
+import Loginmodal from '../components/Loginmodal'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -14,7 +15,6 @@ const Homepage = () => {
         </h1>
       </div>
       <Bottomnav/>
-      
 
     </div>
   )
