@@ -11,7 +11,7 @@ const Mainnav = () => {
           </div>
           <div className="flex gap-4 items-center min-w-6">
             <div className="rounded-full">
-            <img src="/assets/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
+            <img src="/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
             </div>
             <div>
             <h5>Username</h5>
