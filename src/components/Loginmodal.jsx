@@ -1,8 +1,7 @@
 import React from 'react'
 
 const Loginmodal = ({closeModal}) => {
-
-    
+   
   return (
     <div className=" w-full h-full fixed top-0 backdrop-blur-sm flex justify-center items-center">
         <div className="w-full h-full md:h-96 shadow-md md:w-1/2 rounded-md border border-slate-400 z-10 bg-white font-semibold">
@@ -10,12 +9,12 @@ const Loginmodal = ({closeModal}) => {
                 <h2>logo</h2>
             </div>
             <form action="">
-                <div className="flex flex-col w-1/3 mt-10 mx-auto space-y-1" >
+                <div className="flex flex-col w-3/5 mt-10 mx-auto space-y-1" >
                     <label className="font-medium" htmlFor="">Username:</label>
                     <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='Your email' type="email" />
                 </div>
 
-                <div className="flex flex-col w-1/3 mx-auto space-y-1 mt-5 mb-10">
+                <div className="flex flex-col w-3/5 mx-auto space-y-1 mt-5 mb-10">
                     <label className="font-medium" htmlFor="">Password:</label>
                     <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='Your password' type="password" name="" id="" />
                 </div>

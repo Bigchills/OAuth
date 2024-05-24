@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Loginmodal from './Loginmodal';
 import Newaccountmodal from './Newaccountmodal';
+import { useParams, useSearchParams, } from 'react-router-dom';
 
 const Auth = () => {
     const redirect=async()=>{
@@ -13,6 +14,9 @@ const Auth = () => {
     
     const [openLoginModal, setOpenLoginModal]=useState(false);
     const[openNewAccountModal, setOpenNewAccountModal]=useState(false);
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState(null);
+    
   return (
     <>
     <div className=" mt-20 w-3/4 mx-auto border-black space-y-2

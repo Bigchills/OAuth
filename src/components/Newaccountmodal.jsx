@@ -16,22 +16,22 @@ const Newaccountmodal = ({closeModal}) => {
         </div>
         
         <form action="">
-            <div className="flex flex-col w-1/3 mt-10 mx-auto space-y-1" >
+            <div className="flex flex-col w-3/4 md:w-2/5  mt-10 mx-auto space-y-1" >
                 <label className="font-medium" htmlFor="">Name:</label>
                 <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="name" required />
             </div>
 
-            <div className="flex flex-col w-1/3 mx-auto space-y-1 mt-5 mb-10">
+            <div className="flex flex-col w-3/4 md:w-2/5  mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Phone number:</label>
                 <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="number" name="" id="" required />
             </div>     
 
-            <div className="flex flex-col w-1/3 mx-auto space-y-1 mt-5 mb-10">
+            <div className="flex flex-col w-3/4 md:w-2/5  mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Email:</label>
                 <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="email" name="" id="" required />
             </div>
 
-            <div className="flex flex-col w-1/3 mx-auto space-y-1 mt-5 mb-10">
+            <div className="flex flex-col w-3/4 md:w-2/5 mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Password:</label>
                 <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="password" name="" id="" required />
             </div>
