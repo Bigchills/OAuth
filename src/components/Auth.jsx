@@ -4,19 +4,66 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Loginmodal from './Loginmodal';
 import Newaccountmodal from './Newaccountmodal';
-import { useParams, useSearchParams, } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
 
 const Auth = () => {
     const redirect=async()=>{
-        const googleURL="https://roomie-app-1.onrender.com/goauth";
-        const googleWindow=window.open(googleURL, "blank")
+        window.location.href="https://roomie-app-1.onrender.com/goauth";
     }
-    
     const [openLoginModal, setOpenLoginModal]=useState(false);
     const[openNewAccountModal, setOpenNewAccountModal]=useState(false);
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState(null);
-    
+    const openNewModal =()=>{
+        setOpenNewAccountModal(true)
+    }
+    const openLogin=()=>{
+        setOpenLoginModal(true)
+    }
+
+    const [userData, setUserData] = useState(null);
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    useEffect(() => {
+      const fetchUserData = async () => {
+        // Extract the token from the URL
+        const urlParams = new URLSearchParams(location.search);
+        const token = urlParams.get('?auth');
+  
+        // If the token is in the URL, store it in localStorage
+        if (token) {
+          localStorage.setItem('authToken', token);
+          // Remove the token from the URL after storing it
+          navigate('/home', { replace: true });
+        }
+  
+        // Get the token from localStorage
+        const storedToken = localStorage.getItem('authToken');
+        if (!storedToken) {
+          console.error('No access token found');
+          return;
+        }
+  
+        try {
+          // Make the Axios request to the backend
+          const response = await axios.get('https://roomie-app-1.onrender.com/auth/user', {
+            headers: {
+              'Authorization': `Bearer ${storedToken}`
+            },
+            withCredentials: true // Ensure cookies are included in the request if needed
+          });
+          setUserData(response.data);
+        } catch (error) {
+          console.error('Failed to fetch user data:', error);
+        }
+      };
+  
+      fetchUserData();
+    }, [location, navigate]);
+  
+
+
+
+
   return (
     <>
     <div className=" mt-20 w-3/4 mx-auto border-black space-y-2
@@ -62,18 +109,14 @@ const Auth = () => {
                 ">Or
         </div>
         <div className="text-center">
-            <button onClick={()=>{
-                setOpenNewAccountModal(true);
-            }}  className=" rounded-xl mx-auto bg-black hover:bg-slate-900 py-2 px-3 text-white min-w-60 font-semibold">
+            <button onClick={openNewModal}  className=" rounded-xl mx-auto bg-black hover:bg-slate-900 py-2 px-3 text-white min-w-60 font-semibold">
             Create an account
             </button>
         </div>
 
         <div className="text-center space-y-4 font-semibold">
             <h3 className="mt-8">Already have an account?</h3>
-            <button onClick={()=>{
-                setOpenLoginModal(true);
-            }} 
+            <button onClick={openLogin} 
             className="bg-transparent hover:bg-slate-200 w-2/6 rounded-xl font-semibold
                 border border-slate-300 py-2">
                 Sign in</button>

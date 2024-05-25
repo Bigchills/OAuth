@@ -1,6 +1,10 @@
 import React from 'react'
+import { useState, useEffect, } from 'react'
+import axios from 'axios'
 
 const Mainnav = () => {
+ 
+
   return (
     <div>
         <nav className="bg-blue-700 flex justify-between items-center
