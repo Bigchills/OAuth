@@ -5,43 +5,7 @@ import axios from 'axios'
 
 const Mainnav = () => {
 
-  const[userData, setUserData]=useState(null)
   
-  const fetchUserData=async()=>{
-
-    const token=localStorage.getItem('authToken');
-    if (!token) {
-      throw new Error('No auth token found');
-    }
-
-    try {
-      const response = await axios.get('https://roomie-app-1.onrender.com/auth/user', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Failed to fetch user data:', error);
-      throw error;
-    }
-  }
-
-  useEffect(() => {
-    const getUserData = async () => {
-      try {
-        const data = await fetchUserData();
-        setUserData(data);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getUserData();
-  }, []);
-
   return (
     <div>
         <nav className="bg-blue-700 flex justify-between items-center
