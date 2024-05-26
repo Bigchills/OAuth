@@ -3,12 +3,15 @@ import Mainnav from '../components/Mainnav'
 import Bottomnav from '../components/Bottomnav'
 import Loginmodal from '../components/Loginmodal'
 import { useEffect, useState } from 'react'
-import { Axios } from 'axios'
 import { useLocation, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [userData, setUserData]=useState()
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -22,10 +25,7 @@ const Homepage = () => {
       navigate('/home', { replace: true });
     }
   }, [location, navigate]);
-
-
-
-
+  
   return (
     <div>
       <Mainnav/>
