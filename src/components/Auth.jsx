@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Loginmodal from './Loginmodal';
 import Newaccountmodal from './Newaccountmodal';
-import { useParams, useSearchParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 
 const Auth = () => {
     const redirect=async()=>{
@@ -19,47 +19,7 @@ const Auth = () => {
         setOpenLoginModal(true)
     }
 
-    const [userData, setUserData] = useState(null);
-    const location = useLocation();
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      const fetchUserData = async () => {
-        // Extract the token from the URL
-        const urlParams = new URLSearchParams(location.search);
-        const token = urlParams.get('?auth');
-  
-        // If the token is in the URL, store it in localStorage
-        if (token) {
-          localStorage.setItem('authToken', token);
-          // Remove the token from the URL after storing it
-          navigate('/home', { replace: true });
-        }
-  
-        // Get the token from localStorage
-        const storedToken = localStorage.getItem('authToken');
-        if (!storedToken) {
-          console.error('No access token found');
-          return;
-        }
-  
-        try {
-          // Make the Axios request to the backend
-          const response = await axios.get('https://roomie-app-1.onrender.com/auth/user', {
-            headers: {
-              'Authorization': `Bearer ${storedToken}`
-            },
-            withCredentials: true // Ensure cookies are included in the request if needed
-          });
-          setUserData(response.data);
-        } catch (error) {
-          console.error('Failed to fetch user data:', error);
-        }
-      };
-  
-      fetchUserData();
-    }, [location, navigate]);
-  
+    
 
 
 
