@@ -40,6 +40,7 @@ const Mainnav = () => {
 
   return (
     <div>
+      {userData &&(
         <nav className="bg-blue-700 flex justify-between items-center
                          px-6 p-3 border-b-2 border-white                                             
                          ">
@@ -48,10 +49,10 @@ const Mainnav = () => {
           </div>
           <div className="flex gap-4 items-center min-w-6">
             <div className="rounded-full">
-            <img src="/images/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
+              <img src="/images/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
             </div>
             <div>
-            <h5>{userData.username}</h5>
+              <h5>{userData.username}</h5>
             </div>
             <div>
               <button>
@@ -59,7 +60,8 @@ const Mainnav = () => {
               </button>
             </div>
           </div>
-        </nav>      
+        </nav>
+      )}      
     </div>
   )
 }
