@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Loginmodal from './Loginmodal';
 import Newaccountmodal from './Newaccountmodal';
-import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
 
 const Auth = () => {
     const redirect=async()=>{
@@ -17,25 +15,23 @@ const Auth = () => {
     }
     const openLogin=()=>{
         setOpenLoginModal(true)
-    }
-
-    
+    }    
 
 
 
 
   return (
     <>
-    <div className=" mt-20 w-3/4 mx-auto border-black space-y-2
+    <div className=" mt-20 w-3/4 mx-auto border-black space-y-2  
                     ">
-        <div className='border-b border-slate-600 max-w-80 mx-auto' >
+        <div className='border-b border-slate-600 max-w-lg mx-auto' >
             <h2 className="text-xl font-semibold mb-2
                             ">
                 Join Today!
             </h2>
         </div>
         <div className="flex flex-col font-semibold py-4 px-2 space-y-2 max-w-80 mx-auto ">
-            <button className='border rounded-xl py-4 px-2  hover:bg-black hover:text-white' onClick={redirect} >
+            <button className='border  rounded-xl py-4 px-2  hover:bg-black hover:text-white' onClick={redirect} >
                 <a href="" className="flex items-center gap-1">
                 <svg className='' xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
                     <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,
@@ -77,13 +73,13 @@ const Auth = () => {
         <div className="text-center space-y-4 font-semibold">
             <h3 className="mt-8">Already have an account?</h3>
             <button onClick={openLogin} 
-            className="bg-transparent hover:bg-slate-200 w-2/6 rounded-xl font-semibold
+            className=" bg-transparent hover:bg-slate-200 w-2/6 rounded-xl font-semibold
                 border border-slate-300 py-2">
-                Sign in</button>
+                Sign in </button>
         </div>
     </div>
 
-    {openLoginModal && <Loginmodal closeModal={setOpenLoginModal} />}
+    {openLoginModal && <Loginmodal closeModa ={setOpenLoginModal} />}
     {openNewAccountModal && <Newaccountmodal closeModal={setOpenNewAccountModal}/>}
 
     </>

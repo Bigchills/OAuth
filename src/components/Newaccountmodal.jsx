@@ -2,9 +2,9 @@ import React from 'react'
 
 const Newaccountmodal = ({closeModal}) => {
   return (
-<div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-8 flex justify-center items-center">
+<div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5  flex justify-center items-center">
 
-    <div className="w-full md:w-3/4 bg-white font rounded-lg border py-4 border-slate-400 mx-auto">
+    <div className="w-full h-full  md:max-w-2xl md:max-h-[550px] z-10 bg-white font rounded-lg border   border-slate-400 mx-auto overflow-y-scroll overscroll-y-none">
         <div className="font-medium text-center" >
             logo
         </div>
@@ -16,24 +16,24 @@ const Newaccountmodal = ({closeModal}) => {
         </div>
         
         <form action="">
-            <div className="flex flex-col w-3/4 md:w-2/5  mt-10 mx-auto space-y-1" >
+            <div className="flex flex-col w-3/4 md:max-w-sm  mt-10 mx-auto space-y-1" >
                 <label className="font-medium" htmlFor="">Name:</label>
-                <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="name" required />
+                <input id='name' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your name' type="name" required />
             </div>
 
-            <div className="flex flex-col w-3/4 md:w-2/5  mx-auto space-y-1 mt-5 mb-10">
+            <div className="flex flex-col w-3/4 md:max-w-sm  mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Phone number:</label>
-                <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="number" name="" id="" required />
+                <input className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your phone number' type="" name="" id="" required />
             </div>     
 
-            <div className="flex flex-col w-3/4 md:w-2/5  mx-auto space-y-1 mt-5 mb-10">
+            <div className="flex flex-col w-3/4 md:max-w-sm   mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Email:</label>
-                <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="email" name="" id="" required />
+                <input className=" bg-slate-100 border-slate-600 rounded-lg p-3" placeholder='Your email' type="email" name="" id="" required />
             </div>
 
-            <div className="flex flex-col w-3/4 md:w-2/5 mx-auto space-y-1 mt-5 mb-10">
+            <div className="flex flex-col w-3/4 md:max-w-sm  mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Password:</label>
-                <input className="border border-slate-600 h-9 rounded-lg p-2" placeholder='' type="password" name="" id="" required />
+                <input className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Type a password' type="password" name="" id="" required />
             </div>
         </form>
 

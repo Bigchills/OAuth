@@ -9,9 +9,7 @@ import axios from 'axios'
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [userData, setUserData]=useState()
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -20,11 +18,11 @@ const Homepage = () => {
     if (token) {
       // Store the token in localStorage
       localStorage.setItem('authToken', token);
-
       // Remove the token from the URL
       navigate('/home', { replace: true });
     }
   }, [location, navigate]);
+
   
   return (
     <div>
