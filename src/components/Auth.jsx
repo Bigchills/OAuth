@@ -16,10 +16,6 @@ const Auth = () => {
     const openLogin=()=>{
         setOpenLoginModal(true)
     }    
-
-
-
-
   return (
     <>
     <div className=" mt-20 w-3/4 mx-auto border-black space-y-2  

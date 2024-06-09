@@ -14,6 +14,7 @@ const Mainnav = () => {
         console.error('Token not found');
         return;
       }
+
       
       // Check if token is expired or invalid
       const isTokenValid = checkTokenValidity(token);
@@ -60,7 +61,7 @@ const Mainnav = () => {
               <img src="/images/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
             </div>
             <div>
-              <h5>{userData.email}</h5>
+              <h5>{userData.user.email}</h5>
               <h5>{userData.username}</h5>
             </div>
             <div>
