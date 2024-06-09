@@ -10,10 +10,18 @@ const Mainnav = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem('authToken');
-      if(token){
-        console.log(token);
-      }   
+      if (!token) {
+        console.error('Token not found');
+        return;
+      }
+      
       // Check if token is expired or invalid
+      const isTokenValid = checkTokenValidity(token);
+      if (!isTokenValid) {
+        console.error('Token expired or invalid');
+        // Handle token expiry or invalid token (e.g., prompt user to log in again)
+        return;
+      }
 
       try {
         const response = await fetch('https://roomie-app-1.onrender.com/auth/user', {
@@ -53,6 +61,7 @@ const Mainnav = () => {
             </div>
             <div>
               <h5>{userData.email}</h5>
+              <h5>{userData.username}</h5>
             </div>
             <div>
               <button>
