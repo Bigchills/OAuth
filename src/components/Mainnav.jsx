@@ -5,8 +5,47 @@ import axios from 'axios'
 
 const Mainnav = () => {
 
-  const authToken=localStorage.getItem('authToken');
-  console.log(authToken);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        console.error('Token not found');
+        return;
+      }
+      
+      // Check if token is expired or invalid
+      const isTokenValid = checkTokenValidity(token);
+      if (!isTokenValid) {
+        console.error('Token expired or invalid');
+        // Handle token expiry or invalid token (e.g., prompt user to log in again)
+        return;
+      }
+
+      try {
+        const response = await fetch('https://roomie-app-1.onrender.com/auth/user', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (response.ok) {
+          const userData = await response.json();
+          setUserData(userData);
+        } else {
+          console.error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -21,7 +60,7 @@ const Mainnav = () => {
               <img src="/images/react.svg" alt="userPhoto" className=" rounded-full h-7 w-7"/>
             </div>
             <div>
-              <h5>username</h5>
+              <h5>{userData.email}</h5>
             </div>
             <div>
               <button>
