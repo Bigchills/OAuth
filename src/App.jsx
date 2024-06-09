@@ -1,6 +1,5 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/hero'
 import Auth from './components/Auth'
 import SignIn from './Pages/SignIn'
 import Homepage from './Pages/Homepage'

@@ -79,7 +79,7 @@ const Auth = () => {
         </div>
     </div>
 
-    {openLoginModal && <Loginmodal closeModa ={setOpenLoginModal} />}
+    {openLoginModal && <Loginmodal closeModal ={setOpenLoginModal} />}
     {openNewAccountModal && <Newaccountmodal closeModal={setOpenNewAccountModal}/>}
 
     </>
