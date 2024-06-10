@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Homepage = ({user}) => {
+const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,6 +17,32 @@ const Homepage = ({user}) => {
       navigate('/home', { replace: true });
     }
   }, [location, navigate]);
+  const [user, setUser]=useState(null)
+
+  const token=localStorage.getItem("authToken")
+  console.log(token);
+    useEffect(()=>{
+    const getUser=async()=>{
+      fetch('https://roomie-app-1.onrender.com/auth/user',{
+        method:"GET",
+        credentials:"include",
+        headers:{
+           'Authorization': `Bearer ${token}`
+        }
+      }).then(response=>{
+        if(response.status===201)return response.json();
+        throw new Error('Authentication failed!')
+      }).then(resObject=>{
+        setUser(resObject.user)
+      }).catch ((err)=>{
+        console.log(err);
+      })
+    }
+    getUser();
+  },[])
+  console.log(user);
+
+
 
   
   return (
