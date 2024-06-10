@@ -1,6 +1,5 @@
 import React from 'react'
 import Mainnav from '../components/Mainnav'
-import Bottomnav from '../components/Bottomnav'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -28,7 +27,6 @@ const Homepage = ({user}) => {
           Welcome {user.username}
         </h1>
       </div>
-      <Bottomnav/>
     </div>
   
   )
