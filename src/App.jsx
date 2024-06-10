@@ -9,31 +9,6 @@ import { useState } from 'react'
 
 
 const App = () => {
-  const [user, setUser]=useState(null)
-
-  const token=localStorage.getItem("authToken")
-  console.log(token);
-    useEffect(()=>{
-    const getUser=async()=>{
-      fetch('https://roomie-app-1.onrender.com/auth/user',{
-        method:"GET",
-        credentials:"include",
-        headers:{
-           'Authorization': `Bearer ${token}`
-        }
-      }).then(response=>{
-        if(response.status===201)return response.json();
-        throw new Error('Authentication failed!')
-      }).then(resObject=>{
-        setUser(resObject.user)
-      }).catch ((err)=>{
-        console.log(err);
-      })
-    }
-    getUser();
-  },[])
-  console.log(user);
-
 
   
   return (
@@ -41,7 +16,7 @@ const App = () => {
       <>     
         <Routes>
           <Route path='/' element={<SignIn/>}/>
-          <Route path='/home' element={<Homepage user={user} />}/>
+          <Route path='/home' element={<Homepage />}/>
         </Routes>       
       </>
     </BrowserRouter>
