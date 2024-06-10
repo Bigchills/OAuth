@@ -6,14 +6,6 @@ const Newaccountmodal = ({closeModal}) => {
     const handleChange=(e)=>{
         setFormData({...formData,[e.target.id]:e.target.value})
     }
-
-    const handleSubmit=async(e)=>{
-        e.preventDefault();
-        const res=await fetch('https://roomie-app-1.onrender.com/signup', formData)
-        const data =await res.json();
-        console.log(data);
-
-    }
   return (
 <div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5  flex justify-center items-center">
 
@@ -29,7 +21,7 @@ const Newaccountmodal = ({closeModal}) => {
         </div>
         
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-col w-3/4 md:max-w-sm  mt-10 mx-auto space-y-1" >
+            <div className="flex flex-col w-3/4 md:max-w-sm mt-10 mx-auto space-y-1" >
                 <label className="font-medium" htmlFor="">Full Name:</label>
                 <input onChange={handleChange} id='name' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your name' type="name" required />
             </div>

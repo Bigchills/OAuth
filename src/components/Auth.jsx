@@ -45,7 +45,7 @@ const Auth = () => {
                 </a>
             </button>
             <button className='border rounded-xl py-4 px-2
-             hover:bg-black hover:text-white'>
+                 hover:bg-black hover:text-white'>
                 <a href="" className="flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
                     <path fill="#3F51B5" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#FFF" d="M34.368,
@@ -81,5 +81,4 @@ const Auth = () => {
     </>
   )
 }
-
 export default Auth

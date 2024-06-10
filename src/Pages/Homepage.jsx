@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-const Homepage = () => {
+const Homepage = ({user}) => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     const token = searchParams.get('auth');
@@ -25,7 +25,7 @@ const Homepage = () => {
       <Mainnav/>
       <div>
         <h1 className="text-4xl font-bold text-center mt-48">
-          WELCOME TO HOMEPAGE
+          Welcome {user.username}
         </h1>
       </div>
       <Bottomnav/>
