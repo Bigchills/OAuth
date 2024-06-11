@@ -9,6 +9,7 @@ const Mainnav = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('authToken'); // Assuming you're storing the token in local storage
+    console.log(token);
 
     const fetchUserData = async () => {
       try {
@@ -25,7 +26,7 @@ const Mainnav = () => {
         }
 
         // Set the user data
-        setUserData(res.data); // Assuming the user data is nested under `data` key
+        setUserData(res.data.data); // Assuming the user data is nested under `data` key
       } catch (error) {
         console.error(error);
         // Handle error
