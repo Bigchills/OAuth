@@ -16,6 +16,8 @@ const Mainnav = () => {
           headers: {
             'Authorization': `Bearer ${token}`
           }
+        }).then((res)=>{
+          if(res.status=201)return res.json();
         });
         if (!res.ok) {
           throw new Error('Failed to fetch user data');
