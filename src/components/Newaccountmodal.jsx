@@ -16,8 +16,14 @@ const Newaccountmodal = ({closeModal}) => {
     const payload={ fullname, phonenumber, email, password };
     console.log('Request Payload:', payload);
     try {
-      const response= await axios.post('https://roomie-app-1.onrender.com/signup', payload)
-      console.log('Response:', response);
+        const response = await fetch('https://roomie-app-1.onrender.com/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            }, body: JSON.stringify({ fullname, phonenumber, email, password })
+        });
+    //   const response= await axios.post('https://roomie-app-1.onrender.com/signup', payload)
+    //   console.log('Response:', response);
     //     {
     //     fullname,
     //     phonenumber,
