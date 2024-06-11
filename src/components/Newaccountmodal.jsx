@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const Newaccountmodal = ({closeModal}) => {
     const [username, setUsername] = useState('');
