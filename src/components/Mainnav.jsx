@@ -25,7 +25,7 @@ const Mainnav = () => {
         }
 
         // Set the user data
-        setUserData(res.user); // Assuming the user data is nested under `data` key
+        setUserData(res.data); // Assuming the user data is nested under `data` key
       } catch (error) {
         console.error(error);
         // Handle error
