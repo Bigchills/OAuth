@@ -13,13 +13,17 @@ const Newaccountmodal = ({closeModal}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const payload={ fullname, phonenumber, email, password };
+    console.log('Request Payload:', payload);
     try {
-      const response= await axios.post('https://roomie-app-1.onrender.com/signup', {
-        fullname,
-        phonenumber,
-        email,
-        password,
-      });
+      const response= await axios.post('https://roomie-app-1.onrender.com/signup', payload)
+      console.log('Response:', response);
+    //     {
+    //     fullname,
+    //     phonenumber,
+    //     email,
+    //     password,
+    //   });
       if (response.status === 201) {
         setMessage('Signup successful!');
         // Optionally, you can redirect the user to the login page or home page
@@ -28,8 +32,8 @@ const Newaccountmodal = ({closeModal}) => {
         setMessage('Signup failed. Please try again.');
       }
     } catch (error) {
-      console.error('Error during signup:', error);
-      setMessage('Signup failed. Please try again.');
+        console.error('Error during signup:', error.response ? error.response.data : error.message);
+        setMessage('Signup failed. Please try again.');
     }
   }
   return (
