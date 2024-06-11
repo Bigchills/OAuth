@@ -4,8 +4,7 @@ import Auth from './components/Auth'
 import SignIn from './Pages/SignIn'
 import Homepage from './Pages/Homepage'
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect,useState } from 'react'
 
 
 const App = () => {
