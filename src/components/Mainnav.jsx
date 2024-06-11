@@ -8,33 +8,34 @@ const Mainnav = () => {
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
+    const token = localStorage.getItem('authToken'); // Assuming you're storing the token in local storage
+
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('token'); // Assuming you're storing the token in local storage
-        const res = await fetch('https://roomie-app-1.onrender.com/auth/user', {
-          method: 'GET',
+        // Send a GET request to fetch user data
+        const res = await axios.get('https://roomie-app-1.onrender.com/auth/user', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
-        }).then((res)=>{
-          if(res.status=201)return res.json();
         });
-        if (!res.ok) {
+
+        // Check if the response is successful
+        if (res.status !== 200) {
           throw new Error('Failed to fetch user data');
         }
-        const userData = await res.json();
-        setUserData(userData);
-        console.log(userData);
+
+        // Set the user data
+        setUserData(res.user); // Assuming the user data is nested under `data` key
       } catch (error) {
         console.error(error);
         // Handle error
       }
     };
 
-    fetchUserData();
+    if (token) {
+      fetchUserData();
+    }
   }, []);
-
-
 
   return (
     <div>
