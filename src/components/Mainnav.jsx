@@ -15,6 +15,8 @@ const Mainnav = () => {
       try {
         // Send a GET request to fetch user data
         const res = await axios.get('https://roomie-app-1.onrender.com/auth/user', {
+          method:'GET',
+          credentials:'include',
           headers: {
             'Authorization': `Bearer ${token}`
           }
