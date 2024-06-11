@@ -23,7 +23,7 @@ const Mainnav = () => {
         });
 
         // Check if the response is successful
-        if (res.status !== 201) {
+        if (res.status !== 200) {
           throw new Error('Failed to fetch user data');
         }
 
