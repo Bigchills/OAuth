@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Newaccountmodal = ({closeModal}) => {
     const [username, setUsername] = useState('');
@@ -7,11 +8,12 @@ const Newaccountmodal = ({closeModal}) => {
   const [phonenumber, setPhonenumber] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res= await axios.post('https://your-backend-url/api/signup', {
+      const res= await axios.post('https://roomie-app-1.onrender.com/signup', {
         username,
         phonenumber,
         email,
