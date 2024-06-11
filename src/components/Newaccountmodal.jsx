@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Newaccountmodal = ({closeModal}) => {
-    const [username, setUsername] = useState('');
+    const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [password, setPassword] = useState('');
@@ -14,13 +14,13 @@ const Newaccountmodal = ({closeModal}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res= await axios.post('https://roomie-app-1.onrender.com/signup', {
-        username,
+      const response= await axios.post('https://roomie-app-1.onrender.com/signup', {
+        fullname,
         phonenumber,
         email,
         password,
       });
-      if (res.status === 201) {
+      if (response.status === 201) {
         setMessage('Signup successful!');
         // Optionally, you can redirect the user to the login page or home page
         // window.location.href = '/login';
@@ -51,7 +51,7 @@ const Newaccountmodal = ({closeModal}) => {
         <form onSubmit={handleSubmit}>
             <div className="flex flex-col w-3/4 md:max-w-sm mt-10 mx-auto space-y-1" >
                 <label className="font-medium" htmlFor="">Full Name:</label>
-                <input value={username} onChange={(e) => setUsername(e.target.value)} id='name' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your name' type="name" required />
+                <input value={fullname} onChange={(e) => setFullname(e.target.value)} id='name' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your name' type="name" required />
             </div>
 
             <div className="flex flex-col w-3/4 md:max-w-sm  mx-auto space-y-1 mt-5 mb-10">
