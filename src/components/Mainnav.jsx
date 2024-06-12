@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const Mainnav = ({userData}) => {
 
-  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState(null);
 
   // useEffect(() => {
   //   const token = localStorage.getItem('authToken'); // Assuming you're storing the token in local storage
@@ -53,7 +53,7 @@ const Mainnav = ({userData}) => {
               <img src="/images/react.svg" alt="userPhoto" className="rounded-full h-7 w-7"/>
             </div>
             <div>
-              <h5>{userData.username}</h5>
+              <h5>user</h5>
             </div>
             <div>
               <button>
@@ -62,6 +62,7 @@ const Mainnav = ({userData}) => {
             </div>
           </div>
         </nav>
+        
     </div>
   )
 }
