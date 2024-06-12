@@ -24,7 +24,7 @@ const Homepage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem('authToken'); // Assuming you're storing the token in local storage
+        const token = localStorage.getItem('authToken'); 
         const response = await fetch('https://roomie-app-1.onrender.com/auth/user', {
           method: 'GET',
           headers: {
@@ -47,7 +47,7 @@ const Homepage = () => {
     };
 
     fetchUserData();
-  }, []);
+  }, [0]);
 
   return (
     <div>
