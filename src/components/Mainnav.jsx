@@ -3,7 +3,7 @@ import { useState, useEffect, } from 'react'
 import axios from 'axios'
 
 
-const Mainnav = () => {
+const Mainnav = ({userData}) => {
 
   const [userData, setUserData] = useState(null);
 

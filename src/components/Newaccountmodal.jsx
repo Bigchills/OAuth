@@ -22,18 +22,8 @@ const Newaccountmodal = ({closeModal}) => {
               'Content-Type': 'application/json'
             }, body: JSON.stringify({ fullname, phonenumber, email, password })
         });
-    //   const response= await axios.post('https://roomie-app-1.onrender.com/signup', payload)
-    //   console.log('Response:', response);
-    //     {
-    //     fullname,
-    //     phonenumber,
-    //     email,
-    //     password,
-    //   });
       if (response.status === 201) {
         setMessage('Signup successful!');
-        // Optionally, you can redirect the user to the login page or home page
-        // window.location.href = '/login';
       } else {
         setMessage('Signup failed. Please try again.');
       }
