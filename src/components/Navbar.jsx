@@ -14,9 +14,7 @@ const Navbar = () => {
                                 ">
                 Join
             </button>
-        </div>
-        
-
+        </div>        
     </nav>
   )
 }

@@ -7,9 +7,8 @@ import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useEffect,useState } from 'react'
 
 
-const App = () => {
 
-  
+const App = () => {
   return (
     <BrowserRouter>
       <>     

@@ -8,6 +8,7 @@ const Loginmodal = ({closeModal}) => {
             <div className="font-medium text-center">
                 <h2>logo</h2>
             </div>
+            
             <form action="">
                 <div className="flex flex-col w-3/5 mt-10 mx-auto space-y-1" >
                     <label className="font-medium" htmlFor="">Username:</label>

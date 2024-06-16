@@ -1,37 +1,46 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 const Newaccountmodal = ({closeModal}) => {
-    const [fullname, setFullname] = useState('');
+    const [fullName, setFullName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [phonenumber, setPhonenumber] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload={ fullname, phonenumber, email, password };
-    console.log('Request Payload:', payload);
+
     try {
-        const response = await fetch('https://roomie-app-1.onrender.com/signup', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            }, body: JSON.stringify({ fullname, phonenumber, email, password })
-        });
-      if (response.status === 201) {
-        setMessage('Signup successful!');
-      } else {
-        setMessage('Signup failed. Please try again.');
+      const response = await fetch('https://roomie-app-1.onrender.com/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to sign up');
       }
+
+      const data = await response.json();
+      console.log('Signup successful:', data);
+
+      // Redirect to the homepage
+      navigate('/home');
     } catch (error) {
-        console.error('Error during signup:', error.response ? error.response.data : error.message);
-        setMessage('Signup failed. Please try again.');
+      console.error('Error during signup:', error);
+      setError(error.message);
     }
-  }
+  };
+
+
+
+
   return (
 <div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5  flex justify-center items-center">
 
@@ -47,26 +56,27 @@ const Newaccountmodal = ({closeModal}) => {
                 Fill in your details
             </h2>
         </div>
-        
+
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
             <div className="flex flex-col w-3/4 md:max-w-sm mt-10 mx-auto space-y-1" >
                 <label className="font-medium" htmlFor="">Full Name:</label>
-                <input value={fullname} onChange={(e) => setFullname(e.target.value)} id='name' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your name' type="name" required />
+                <input  id='name' value={fullName}  onChange={(e) => setFullName(e.target.value)} className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your name' type="name" required />
             </div>
 
             <div className="flex flex-col w-3/4 md:max-w-sm  mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Phone number:</label>
-                <input value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)}   id='phonenumber' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your phone number' type="" name="" required />
+                <input    id='phonenumber' value={phoneNumber}  onChange={(e) => setPhoneNumber(e.target.value)} className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Your phone number' type="" name="" required />
             </div>     
 
             <div className="flex flex-col w-3/4 md:max-w-sm   mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Email:</label>
-                <input value={email}  onChange={(e) => setEmail(e.target.value)} id='email' className=" bg-slate-100 border-slate-600 rounded-lg p-3" placeholder='Your email' type="email" name=""  required />
+                <input id='email' value={email}  onChange={(e) => setEmail(e.target.value)} className=" bg-slate-100 border-slate-600 rounded-lg p-3" placeholder='Your email' type="email" name=""  required />
             </div>
 
             <div className="flex flex-col w-3/4 md:max-w-sm  mx-auto space-y-1 mt-5 mb-10">
                 <label className="font-medium" htmlFor="">Password:</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} id='password' className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Type a password' type="password" name="" required />
+                <input  id='password' value={password} onChange={(e) => setPassword(e.target.value)}   className=" bg-slate-100 border-slate-600  rounded-lg p-3" placeholder='Type a password' type="password" name="" required />
             </div>
             <div className=" w-1/2 flex mx-auto space-x-5 justify-center items-center mb-5">
                 <button onClick={()=>{
@@ -76,8 +86,6 @@ const Newaccountmodal = ({closeModal}) => {
                  rounded-md text-white px-3 py-1 text-sm">Sign up</button>
             </div>              
         </form>
-        {message && <p>{message}</p>}
-
     </div>     
 </div>
   )
