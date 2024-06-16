@@ -2,21 +2,23 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Newaccountmodal = ({ closeModal }) => {
-  const [fullName, setFullName] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const DEFAULT_AVATAR_URL = 'https://cdn-icons-png.flaticon.com/512/147/147144.png';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const signupData = {
-      fullName,
-      phoneNumber,
+      username,
       email,
+      avatar: DEFAULT_AVATAR_URL,
       password,
+
     };
 
     try {
@@ -30,7 +32,7 @@ const Newaccountmodal = ({ closeModal }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Signup error details:', errorData); // Log detailed error response
+        console.error('Signup error details:', errorData);
         throw new Error(errorData.error || 'Failed to sign up');
       }
 
@@ -40,7 +42,7 @@ const Newaccountmodal = ({ closeModal }) => {
       // Redirect to the homepage
       navigate('/home');
     } catch (error) {
-      console.error('Error during signup:', error.message); // Log error message
+      console.error('Error during signup:', error.message);
       setError(error.message);
     }
   };
@@ -58,22 +60,10 @@ const Newaccountmodal = ({ closeModal }) => {
             <label className="font-medium" htmlFor="name">Full Name:</label>
             <input
               id="name"
-              value={fullName}
+              value={username}
               onChange={(e) => setFullName(e.target.value)}
               className="bg-slate-100 border-slate-600 rounded-lg p-3"
               placeholder="Your name"
-              type="text"
-              required
-            />
-          </div>
-          <div className="flex flex-col w-3/4 md:max-w-sm mx-auto space-y-1 mt-5 mb-10">
-            <label className="font-medium" htmlFor="phonenumber">Phone number:</label>
-            <input
-              id="phonenumber"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="bg-slate-100 border-slate-600 rounded-lg p-3"
-              placeholder="Your phone number"
               type="text"
               required
             />
