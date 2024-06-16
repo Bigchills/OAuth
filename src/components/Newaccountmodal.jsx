@@ -61,7 +61,7 @@ const Newaccountmodal = ({ closeModal }) => {
             <input
               id="name"
               value={username}
-              onChange={(e) => setFullName(e.target.value)}
+              onChange={(e) => setUsername(e.target.value)}
               className="bg-slate-100 border-slate-600 rounded-lg p-3"
               placeholder="Your name"
               type="text"
