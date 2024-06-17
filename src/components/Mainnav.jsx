@@ -3,7 +3,7 @@ import { useState, useEffect, } from 'react'
 import axios from 'axios'
 
 
-const Mainnav = () => {
+const Mainnav = ({user}) => {
 
   return (
     <div>
@@ -15,10 +15,10 @@ const Mainnav = () => {
           </div>
           <div className="flex gap-4 items-center min-w-6">
             <div className="rounded-full">
-              <img src="/images/react.svg" alt="userPhoto" className="rounded-full h-7 w-7"/>
+              <img src={user.avatar} alt="userPhoto" className="rounded-full h-7 w-7"/>
             </div>
             <div>
-              <h5>user</h5>
+              <h5>{user.username}</h5>
             </div>
             <div>
               <button>

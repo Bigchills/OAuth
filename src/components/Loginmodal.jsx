@@ -33,7 +33,6 @@ const Loginmodal = ({ closeModal }) => {
       const data = await response.json();
       console.log('Login successful:', data);
 
-      // Store token in localStorage (optional)
       localStorage.setItem('token', data.token);
 
       // Redirect to the homepage

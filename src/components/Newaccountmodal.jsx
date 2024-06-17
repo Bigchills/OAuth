@@ -38,9 +38,13 @@ const Newaccountmodal = ({ closeModal }) => {
 
       const data = await response.json();
       console.log('Signup successful:', data);
+      if(data.user){
+        localStorage.setItem('userId', data.user);
 
-      // Redirect to the homepage
-      navigate('/home');
+        // Redirect to the homepage
+        navigate('/home');  
+
+      }
     } catch (error) {
       console.error('Error during signup:', error.message);
       setError(error.message);
