@@ -57,7 +57,7 @@ const Homepage = () => {
   
   return (
     <div>
-      {user && <Mainnav user={user}/>}
+      <Mainnav user={userData}/>
       <div>
         <h1 className="text-4xl font-bold text-center
                       mt-48"> Welcome 
