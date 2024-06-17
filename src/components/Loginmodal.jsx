@@ -47,7 +47,7 @@ const Loginmodal = ({ closeModal }) => {
     <div className="w-full h-full fixed py-5 top-0 backdrop-blur-sm flex justify-center items-center">
       <div className="w-full h-full md:h-96 shadow-md md:w-1/2 rounded-md border border-slate-400 z-10 bg-white font-semibold">
         <div className="font-medium text-center">
-          <h2>logo</h2>
+          <h2>Logo</h2>
         </div>
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
