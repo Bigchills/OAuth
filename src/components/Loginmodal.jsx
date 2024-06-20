@@ -7,6 +7,43 @@ const Loginmodal = ({ closeModal }) => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const loginData = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await fetch('https://roomie-app-1.onrender.com/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Login error details:', errorData);
+        throw new Error(errorData.error || 'Failed to log in');
+      }
+
+      const data = await response.json();
+      console.log('Login successful:', data);
+
+      // Save the token to localStorage
+      localStorage.setItem('authToken', data.token);
+
+      // Redirect to the homepage
+      navigate('/home');
+    } catch (error) {
+      console.error('Error during login:', error.message);
+      setError(error.message);
+    }
+  };
+
  
   return (
     <div className="w-full h-full fixed py-5 top-0 backdrop-blur-sm flex justify-center items-center">
@@ -14,13 +51,15 @@ const Loginmodal = ({ closeModal }) => {
         <div className="font-medium text-center">
           <h2>Logo</h2>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="flex flex-col w-3/5 mt-10 mx-auto space-y-1">
             <label className="font-medium" htmlFor="email">Email:</label>
             <input
               id="email"
-              value=''
-              onChange=''
+              value={email}
+              onChange={(e)=>{
+                setEmail(e.target.value)
+              }}
               className="bg-slate-100 rounded-lg p-3"
               placeholder="Your email"
               type="email"
@@ -32,8 +71,10 @@ const Loginmodal = ({ closeModal }) => {
             <label className="font-medium" htmlFor="password">Password:</label>
             <input
               id="password"
-              value=''
-              onChange=''
+              value={password}
+              onChange={(e)=>{
+                setPassword(e.target.value)
+              }}
               className="bg-slate-100 rounded-lg p-3"
               placeholder="Your password"
               type="password"
