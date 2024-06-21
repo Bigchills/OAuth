@@ -51,7 +51,8 @@ const Loginmodal = ({ closeModal }) => {
         <div className="font-medium text-center">
           <h2>Logo</h2>
         </div>
-        <form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+        <form onSubmit={handleSubmit} >
           <div className="flex flex-col w-3/5 mt-10 mx-auto space-y-1">
             <label className="font-medium" htmlFor="email">Email:</label>
             <input
