@@ -16,7 +16,7 @@ const Homepage = () => {
         navigate('/')
       }
 
-      setUser(storedUser)
+    setUser(storedUser)
 
 
   },[navigate])
