@@ -14,16 +14,18 @@ const Homepage = () => {
 
       if(!token || !storedUser){
         navigate('/')
+      }else{
+        setUser(JSON.parse(storedUser))
       }
 
-    setUser(storedUser)
+   
 
 
   },[navigate])
 
   return (
     <div>
-       <Mainnav user={user}/>
+       {user && <Mainnav user={user}/>}
       <div>
         <h1 className="text-4xl font-bold text-center
                       mt-48"> Welcome 

@@ -1,6 +1,12 @@
 import React from 'react';
 
 const Mainnav = ({user}) => {
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    navigate('/');
+  };
   return (
     <div>
       <nav className="bg-blue-700 flex justify-between items-center px-6 p-3 border-b-2 border-white">
@@ -17,7 +23,7 @@ const Mainnav = ({user}) => {
               <h5>{user.username}!</h5>
             </div>
             <div>
-              <button>
+              <button onClick={handleLogout}>
                 logout
               </button>
             </div>
