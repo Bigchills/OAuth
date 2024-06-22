@@ -17,10 +17,10 @@ const Mainnav = ({user}) => {
         {user &&(
           <div className="flex gap-4 items-center min-w-6">
             <div className="rounded-full">
-              <img src="" alt="userPhoto" className="rounded-full h-7 w-7" />
+              <img src={user.avatar} alt="userPhoto" className="rounded-full h-7 w-7" />
             </div>
             <div>
-              <h5>{user.username}!</h5>
+              <h5>{user.username}</h5>
             </div>
             <div>
               <button onClick={handleLogout}>
