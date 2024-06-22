@@ -6,18 +6,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const searchParams = new URLSearchParams(location.search);
-  //   const token = searchParams.get('auth');
-  //   if (token) {
-  //     localStorage.setItem('authToken', token);
-  //     navigate('/home', { replace: true });
-  //   }
-  // }, [location, navigate]);  
-
-
   const [user,setUser]=useState(null)
+
     useEffect=(()=>{
 
       const token= localStorage.getItem('token')
