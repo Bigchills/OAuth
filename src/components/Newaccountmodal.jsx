@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const SignupModal = ({ closeModal }) => {
+const Newaccountmodal = ({ closeModal }) => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const DEFAULT_AVATAR_URL = 'https://cdn-icons-png.flaticon.com/512/147/147144.png';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const signupData = {
+      username,
       email,
+      avatar: DEFAULT_AVATAR_URL,
       password,
     };
 
@@ -33,11 +38,15 @@ const SignupModal = ({ closeModal }) => {
       const data = await response.json();
       console.log('Signup successful:', data);
 
-      localStorage.setItem('token', data.token); 
-      localStorage.setItem('user', JSON.stringify(data.user)); 
+      // Assuming your backend sends back user data as part of the response
+      if (data.user) {
+        localStorage.setItem('user', JSON.stringify(data.user));
 
-      navigate('/home');
-
+        // Redirect to the homepage
+        navigate('/home');
+      } else {
+        throw new Error('User data not found in response');
+      }
     } catch (error) {
       console.error('Error during signup:', error.message);
       setError(error.message);
@@ -45,42 +54,52 @@ const SignupModal = ({ closeModal }) => {
   };
 
   return (
-    <div className="w-full h-full fixed py-5 top-0 backdrop-blur-sm flex justify-center items-center">
-      <div className="w-full h-full md:h-96 shadow-md md:w-1/2 rounded-md border border-slate-400 z-10 bg-white font-semibold">
-        <div className="font-medium text-center">
-          <h2>Signup</h2>
+    <div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5 flex justify-center items-center">
+      <div className="w-full h-full md:max-w-2xl md:max-h-[550px] z-10 bg-white font rounded-lg border border-slate-400 mx-auto overflow-y-scroll overscroll-y-none">
+        <div className="font-medium text-center">logo</div>
+        <div className="font-medium flex justify-center items-center">
+          <h2>Fill in your details</h2>
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <form onSubmit={handleSubmit}>
-          <div className="flex flex-col w-3/5 mt-10 mx-auto space-y-1">
+          <div className="flex flex-col w-3/4 md:max-w-sm mt-10 mx-auto space-y-1">
+            <label className="font-medium" htmlFor="name">Full Name:</label>
+            <input
+              id="name"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="bg-slate-100 border-slate-600 rounded-lg p-3"
+              placeholder="Your name"
+              type="text"
+              required
+            />
+          </div>
+          <div className="flex flex-col w-3/4 md:max-w-sm mx-auto space-y-1 mt-5 mb-10">
             <label className="font-medium" htmlFor="email">Email:</label>
             <input
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-slate-100 rounded-lg p-3"
+              className="bg-slate-100 border-slate-600 rounded-lg p-3"
               placeholder="Your email"
               type="email"
               required
             />
           </div>
-
-          <div className="flex flex-col w-3/5 mx-auto space-y-1 mt-5 mb-10">
+          <div className="flex flex-col w-3/4 md:max-w-sm mx-auto space-y-1 mt-5 mb-10">
             <label className="font-medium" htmlFor="password">Password:</label>
             <input
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="bg-slate-100 rounded-lg p-3"
-              placeholder="Your password"
+              className="bg-slate-100 border-slate-600 rounded-lg p-3"
+              placeholder="Type a password"
               type="password"
               required
             />
           </div>
-
-          <div className="w-1/2 flex mx-auto space-x-5 justify-center">
+          <div className="w-1/2 flex mx-auto space-x-5 justify-center items-center mb-5">
             <button
-              type="button"
               onClick={() => closeModal(false)}
               className="border bg-red-600 hover:bg-red-700 rounded-md text-white px-3 py-1 text-sm"
             >
@@ -90,7 +109,7 @@ const SignupModal = ({ closeModal }) => {
               type="submit"
               className="border bg-black hover:bg-slate-800 rounded-md text-white px-3 py-1 text-sm"
             >
-              Sign Up
+              Sign up
             </button>
           </div>
         </form>
@@ -99,4 +118,4 @@ const SignupModal = ({ closeModal }) => {
   );
 };
 
-export default SignupModal;
+export default Newaccountmodal;
