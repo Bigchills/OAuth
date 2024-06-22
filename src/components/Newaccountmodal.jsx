@@ -38,15 +38,14 @@ const Newaccountmodal = ({ closeModal }) => {
       const data = await response.json();
       console.log('Signup successful:', data);
 
-      // Assuming your backend sends back user data as part of the response
-      if (data.user) {
-        localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('token', data.cookie);
+      localStorage.setItem('user', JSON.stringify(data.user))
 
-        // Redirect to the homepage
+      // Redirect to the homepage
+      navigate('/home');
+
+
         navigate('/home');
-      } else {
-        throw new Error('User data not found in response');
-      }
     } catch (error) {
       console.error('Error during signup:', error.message);
       setError(error.message);
