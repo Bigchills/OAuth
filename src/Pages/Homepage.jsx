@@ -8,8 +8,7 @@ const Homepage = () => {
   const navigate = useNavigate();
   const [user,setUser]=useState(null)
 
-    useEffect=(()=>{
-
+    useEffect(()=>{
       const token= localStorage.getItem('token')
       const storedUser=localStorage.getItem('user')
 
