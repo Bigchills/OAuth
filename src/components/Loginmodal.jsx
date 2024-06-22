@@ -14,7 +14,6 @@ const Loginmodal = ({ closeModal }) => {
       email,
       password,
     };
-
     try {
       const response = await fetch('https://roomie-app-1.onrender.com/login', {
         method: 'POST',
@@ -34,7 +33,8 @@ const Loginmodal = ({ closeModal }) => {
       console.log('Login successful:', data);
 
       // Save the token to localStorage
-      localStorage.setItem('authToken', data.token);
+      localStorage.setItem('token', data.cookie);
+      localStorage.setItem('user', JSON.stringify(data.user))
 
       // Redirect to the homepage
       navigate('/home');
@@ -43,8 +43,6 @@ const Loginmodal = ({ closeModal }) => {
       setError(error.message);
     }
   };
-
- 
   return (
     <div className="w-full h-full fixed py-5 top-0 backdrop-blur-sm flex justify-center items-center">
       <div className="w-full h-full md:h-96 shadow-md md:w-1/2 rounded-md border border-slate-400 z-10 bg-white font-semibold">
