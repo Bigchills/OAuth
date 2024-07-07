@@ -28,7 +28,7 @@ const Loginmodal = ({ closeModal }) => {
         console.error('Login error details:', errorData);
         throw new Error(errorData.error || 'Failed to log in');
       }
-
+      
       const data = await response.json();
       console.log('Login successful:', data);
 

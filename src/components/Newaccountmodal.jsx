@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const Newaccountmodal = ({ closeModal }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -28,10 +29,10 @@ const Newaccountmodal = ({ closeModal }) => {
         },
         body: JSON.stringify(signupData),
       });
-
+  
       if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Signup error details:', errorData);
+          const errorData = await response.json();
+          console.error('Signup error details:', errorData);
         throw new Error(errorData.error || 'Failed to sign up');
       }
 
@@ -51,7 +52,7 @@ const Newaccountmodal = ({ closeModal }) => {
       setError(error.message);
     }
   };
-
+  
   return (
     <div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5 flex justify-center items-center">
       <div className="w-full h-full md:max-w-2xl md:max-h-[550px] z-10 bg-white font rounded-lg border border-slate-400 mx-auto overflow-y-scroll overscroll-y-none">

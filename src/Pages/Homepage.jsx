@@ -2,6 +2,7 @@ import React from 'react'
 import Mainnav from '../components/Mainnav'
 import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Createposts from '../components/Createposts'
 
 const Homepage = () => {
   const location = useLocation();
@@ -12,11 +13,11 @@ const Homepage = () => {
       const token= localStorage.getItem('token')
       const storedUser=localStorage.getItem('user')
 
-      if(!token || !storedUser){
-        navigate('/')
-      }else{
-        setUser(JSON.parse(storedUser))
-      }
+      // if(!token || !storedUser){
+      //   navigate('/')
+      // }else{
+      //   setUser(JSON.parse(storedUser))
+      // }
 
    
 
@@ -27,9 +28,10 @@ const Homepage = () => {
     <div>
        {user && <Mainnav user={user}/>}
       <div>
-        <h1 className="text-4xl font-bold text-center
+        <Createposts/>
+        {/* <h1 className="text-4xl font-bold text-center
                       mt-48"> Welcome 
-        </h1>
+        </h1> */}
       </div>
     </div>
   
