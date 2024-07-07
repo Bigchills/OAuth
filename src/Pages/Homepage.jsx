@@ -18,11 +18,21 @@ const Homepage = () => {
       // }else{
       //   setUser(JSON.parse(storedUser))
       // }
+    const searchParams = new URLSearchParams(location.search);
+    const authToken = searchParams.get('auth');
+
+    if (token) {
+      // Store the token in localStorage
+      localStorage.setItem('authToken', token);
+
+      // Remove the token from the URL
+      navigate('/home', { replace: true });
+    }
 
    
 
 
-  },[navigate])
+  },[location, navigate])
 
   return (
     <div>
