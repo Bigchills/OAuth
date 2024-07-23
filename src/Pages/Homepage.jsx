@@ -1,50 +1,68 @@
-import React from 'react'
-import Mainnav from '../components/Mainnav'
-import { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import Createposts from '../components/Createposts'
+import React, { useEffect, useState } from 'react';
+import Mainnav from '../components/Mainnav';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Createposts from '../components/Createposts';
 
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [user,setUser]=useState(null)
+  const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
 
-    useEffect(()=>{
-      const token= localStorage.getItem('token')
-      const storedUser=localStorage.getItem('user')
-
-      // if(!token || !storedUser){
-      //   navigate('/')
-      // }else{
-      //   setUser(JSON.parse(storedUser))
-      // }
-    const searchParams = new URLSearchParams(location.search);
-    const authToken = searchParams.get('auth');
+  useEffect(() => {
+    // Extract token from URL
+    const urlParams = new URLSearchParams(location.search);
+    const token = urlParams.get('auth');
 
     if (token) {
-      // Store the token in localStorage
-      localStorage.setItem('authToken', token);
+      // Store token in local storage for future use
+      localStorage.setItem('token', token);
 
-      // Remove the token from the URL
-      navigate('/home', { replace: true });
+      // Fetch authenticated user using the token
+      fetch('https://yourbackendapi.com/auth/user', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setUser(data);
+        localStorage.setItem('user', JSON.stringify(data));
+        // Redirect to home page
+        navigate('/home');
+      })
+      .catch(error => {
+        setError(error);
+      });
+    } else {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      } else {
+        setError(new Error('No token found in URL or local storage'));
+      }
     }
+  }, [location.search, navigate]);
 
-   
-
-
-  },[location, navigate])
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div>
-       {user && <Mainnav user={user}/>}
+      <Mainnav />
       <div>
-        <Createposts/>
-        {/* <h1 className="text-4xl font-bold text-center
-                      mt-48"> Welcome 
-        </h1> */}
+        <Createposts />
+        <h1 className="text-4xl font-bold text-center mt-48">Welcome</h1>
       </div>
     </div>
-  
-  )
-}
-export default Homepage
+  );
+};
+
+export default Homepage;
