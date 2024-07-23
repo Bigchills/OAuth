@@ -10,8 +10,8 @@ const Mainnav = ({user}) => {
     navigate('/');
   };
   return (
-    <div>
-      <nav className="bg-blue-700 flex justify-between items-center px-6 p-3 border-b-2 border-white">
+    <div className='bg-white'>
+      <nav className=" flex justify-between items-center px-6 p-3 border-b-2 border-white">
         <div className="font-semibold">
           <a href="">Logo</a>
         </div>

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Mainnav from '../components/Mainnav';
-import Createposts from '../components/Createposts';
+import Leftsidebar from '../components/Leftsidebar';
+import Maincontent from '../components/Maincontent';
+import RightSidebar from '../components/Rightsidebar';
 
 const Homepage = () => {
   const location = useLocation();
@@ -54,11 +56,15 @@ const Homepage = () => {
   }
 
   return (
-    <div>
-      <Mainnav user={user} />
-      <div>
-        <Createposts />
-        <h1 className="text-4xl font-bold text-center mt-48">Welcome</h1>
+    <div className='bg-slate-100'>
+      <div className='flex '>
+        <Leftsidebar/>
+        <div className='flex-1 flex flex-col'>
+        <Mainnav user={user} />
+        <Maincontent/>
+        </div>
+        <RightSidebar/>
+
       </div>
     </div>
   );
