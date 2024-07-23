@@ -2,7 +2,7 @@ import React from 'react';
 
 const RightSidebar = () => {
   return (
-    <div className="w-64 bg-white p-4">
+    <div className="w-64 bg-white p-4 h-screen overflow-y-scroll fixed top-0 right-0">
       <h2 className="text-gray-700 text-xl font-bold">Today Trending</h2>
       <ul className="mt-4">
         <li className="mb-4">Figma maintenance <span className="text-gray-500">66 in 1 hour</span></li>

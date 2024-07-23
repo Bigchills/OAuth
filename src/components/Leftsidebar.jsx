@@ -2,10 +2,10 @@ import React from 'react'
 
 const Leftsidebar = () => {
   return (
-    <div className="w-64 bg-white p-4">
+    <div className="w-64 bg-white p-4 h-screen fixed top-0 left-0 overflow-y-scroll ">
       <div className="text-blue-500 text-2xl font-bold flex items-center space-x-2">
         <img src="logo.png" alt="Logo" className="w-8 h-8" />
-        <span>Kaloka</span>
+        <span>Roomieapp</span>
       </div>
       <input type="text" placeholder="Explore kaloka..." className="mt-4 w-full px-4 py-2 rounded border" />
       <nav className="mt-4">
