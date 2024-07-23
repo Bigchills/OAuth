@@ -55,7 +55,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <Mainnav />
+      <Mainnav user={user} />
       <div>
         <Createposts />
         <h1 className="text-4xl font-bold text-center mt-48">Welcome</h1>
