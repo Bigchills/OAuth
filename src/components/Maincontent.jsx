@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Maincontent = () => {
+const Maincontent = ({user}) => {
   return (
     <div className="flex-1 bg-gray-100 p-4">
     <div className="bg-white p-4 rounded shadow">
       <div className="flex items-center space-x-2">
-        <img src="profile-pic.png" alt="User" className="w-10 h-10 rounded-full" />
+        <img src={user.avatar} alt="User" className="w-10 h-10 rounded-full" />
         <input type="text" placeholder="What's on your mind?" className="w-full px-4 py-2 border rounded" />
       </div>
       <div className="flex space-x-4 mt-4">
