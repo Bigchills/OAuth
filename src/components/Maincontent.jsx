@@ -2,7 +2,7 @@ import React from 'react'
 
 const Maincontent = ({user}) => {
   return (
-    <div className="flex-1 bg-gray-100 p-4">
+    <div className="flex-1 bg-gray-100 p-4 overflow-y-auto  ml-64 mr-64">
     <div className="bg-white p-4 rounded shadow">
         {
           user &&(
