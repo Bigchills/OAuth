@@ -10,14 +10,14 @@ const Mainnav = ({user}) => {
     navigate('/');
   };
   return (
-    <div className='bg-white'>
+    <div className=' fixed top-0 z-20 bg-white'>
       <nav className=" flex justify-between items-center px-6 p-3 border-b-2 border-white">
         <div className="font-semibold">
           <a href="">Logo</a>
         </div>
         
         {user &&(
-          <div className="flex gap-4 items-center min-w-6">
+          <div className="flex gap-2 items-center min-w-6">
             <div className="rounded-full">
               <img src={user.avatar} alt="userPhoto" className="rounded-full h-7 w-7" />
             </div>

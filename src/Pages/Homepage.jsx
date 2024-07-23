@@ -56,7 +56,7 @@ const Homepage = () => {
   }
 
   return (
-    <div className='bg-slate-100'>
+    <div className=''>
       <div className='flex '>
         <Leftsidebar/>
         <div className='flex-1 flex flex-col'>
