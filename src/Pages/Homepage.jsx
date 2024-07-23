@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Mainnav from '../components/Mainnav';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Mainnav from '../components/Mainnav';
 import Createposts from '../components/Createposts';
 
 const Homepage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     // Extract token from URL
@@ -15,44 +14,15 @@ const Homepage = () => {
     const token = urlParams.get('auth');
 
     if (token) {
-      // Store token in local storage for future use
       localStorage.setItem('token', token);
-
-      // Fetch authenticated user using the token
-      fetch('https://yourbackendapi.com/auth/user', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => {
-        setUser(data);
-        localStorage.setItem('user', JSON.stringify(data));
-        // Redirect to home page
-        navigate('/home');
-      })
-      .catch(error => {
-        setError(error);
-      });
+      navigate('/home', { replace: true });
     } else {
       const storedUser = localStorage.getItem('user');
       if (storedUser) {
         setUser(JSON.parse(storedUser));
-      } else {
-        setError(new Error('No token found in URL or local storage'));
       }
     }
   }, [location.search, navigate]);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
 
   return (
     <div>
