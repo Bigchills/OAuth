@@ -36,6 +36,7 @@ const Homepage = () => {
         localStorage.setItem('user', JSON.stringify(data));
         // Redirect to the home page
         navigate('/home', { replace: true });
+        console.log(data);
       })
       .catch(error => {
         setError(error);
