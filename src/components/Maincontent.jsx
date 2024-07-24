@@ -12,13 +12,13 @@ const Maincontent = ({user}) => {
                 </div>
             )  
             }
-            <div className="flex justify-between mt-4">
+            <div className="flex space-x-3 mt-4">
                 <div>
                     <button className="px-4 py-2 border rounded">Photo</button>
                     <button className="px-4 py-2 border rounded">Video</button>
                 </div>
                 <div>
-                    <button className="px-4 py-1 flex items-center justify-center rounded bg-blue-600">Post</button>
+                    <button className="px-4 py-1 flex items-center justify-center text-white font-medium rounded bg-blue-600">Post</button>
                 </div>
             </div>
         </div>
