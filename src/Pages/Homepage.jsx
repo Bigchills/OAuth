@@ -43,7 +43,7 @@ const Homepage = () => {
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       } else {
-        navigate('/signin', { replace: true });
+        navigate('/', { replace: true });
       }
     }
   }, [location.search, navigate]);
