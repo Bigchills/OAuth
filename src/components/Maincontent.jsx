@@ -6,7 +6,7 @@ const Maincontent = ({user}) => {
         <div className="bg-white p-4 rounded shadow">
             {
             user &&(
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center space-x-2 sticky z-30">
                     <img src={user.avatar} alt="User" className="w-10 h-10 rounded-full" />
                     <input type="text" placeholder="What's on your mind?" className="w-full px-4 py-2 border rounded" />
                 </div>
