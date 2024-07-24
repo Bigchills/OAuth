@@ -19,7 +19,7 @@ const Mainnav = ({user}) => {
           <span>Roomieapp</span>
         </div>
           
-            <div className="flex gap-2 items-center min-w-6">
+            <div className="flex gap-4 items-center min-w-6">
               <div className="rounded-full">
                 <img src={user.avatar} alt="userPhoto" className="rounded-full h-7 w-7" />
               </div>
