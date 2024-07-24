@@ -49,11 +49,6 @@ const Homepage = () => {
         setUser(JSON.parse(storedUser));
       }
     }
-    if(token || user){
-      navigate("/home")
-    }else{
-      navigate("/")
-    }
   }, [location.search, navigate]);
 
   if (error) {
