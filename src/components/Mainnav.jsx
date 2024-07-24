@@ -10,7 +10,7 @@ const Mainnav = ({user}) => {
     navigate('/');
   };
   return (
-    <div className=' bg-white sticky top-0 z-10'>
+    <div className=' bg-white sticky top-0 z-10 border border-b-slate-300'>
 
       {
         user &&(
