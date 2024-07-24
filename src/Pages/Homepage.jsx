@@ -60,8 +60,8 @@ const Homepage = () => {
       <div className='flex '>
         <Leftsidebar/>
         <div className='flex-1 flex flex-col'>
-        <Mainnav user={user} />
-        <Maincontent user={user}/>
+          <Mainnav user={user} />
+          <Maincontent user={user}/>
         </div>
         <RightSidebar/>
 
