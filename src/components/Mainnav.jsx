@@ -10,14 +10,14 @@ const Mainnav = ({user}) => {
     navigate('/');
   };
   return (
-    <div className=' bg-white sticky top-0 z-20'>
+    <div className=' bg-white sticky top-0 z-10'>
 
       {
         user &&(
           <nav className=" flex justify-between items-center px-6 p-3 border-b-2 border-white">
-          <div className="font-semibold">
-            <a href="">Logo</a>
-          </div>
+        <div className="text-blue-500 text-2xl font-bold flex items-center space-x-2">
+          <span>Roomieapp</span>
+        </div>
           
             <div className="flex gap-2 items-center min-w-6">
               <div className="rounded-full">

@@ -2,10 +2,7 @@ import React from 'react'
 
 const Leftsidebar = () => {
   return (
-    <div className="w-64 bg-white p-4 h-screen fixed left-0 overflow-y-auto mt-14">
-      <div className="text-blue-500 text-2xl font-bold flex items-center space-x-2">
-        <span>Roomieapp</span>
-      </div>
+    <div className="w-64 bg-white p-4 h-screen fixed left-0 overflow-y-auto mt-12">
       <input type="text" placeholder="Explore the room..." className="mt-4 w-full px-4 py-2 rounded border" />
       <nav className="mt-4">
         <ul>
