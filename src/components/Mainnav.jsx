@@ -27,7 +27,7 @@ const Mainnav = ({user}) => {
                 <h5>{user.username}</h5>
               </div>
               <div>
-                <button onClick={handleLogout} className='rounded flex items-center justify-center border px-3 py-2
+                <button onClick={handleLogout} className='rounded flex items-center justify-center border px-3 py-1
                  border-slate-400'>
                   logout
                 </button>
