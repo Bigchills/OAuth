@@ -49,11 +49,15 @@ const Homepage = () => {
         setUser(JSON.parse(storedUser));
       }
     }
+    if(!token || !user){
+      navigate("/")
+    }
   }, [location.search, navigate]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
+ 
 
   return (
     <div className=''>

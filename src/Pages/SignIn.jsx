@@ -4,8 +4,7 @@ import Auth from '../components/Auth'
 
 const SignIn = () => {
   return (
-    <div>
-        <Navbar/>
+    <div className='bg-slate-200'>
         <Auth/>
     </div>
   )
