@@ -28,7 +28,7 @@ const Auth = () => {
         </div>
         <div className="flex flex-col font-semibold py-4 px-2 space-y-2 max-w-80 mx-auto ">
             <button className='border  rounded-xl py-4 px-2  hover:bg-black hover:text-white' onClick={redirect} >
-                <a href="" className="flex items-center gap-1">
+                <a  className="flex items-center gap-1">
                     <svg className='' xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
                     <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,
                     8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,
@@ -46,7 +46,7 @@ const Auth = () => {
             </button>
             <button className='border rounded-xl py-4 px-2
                  hover:bg-black hover:text-white'>
-                <a href="" className="flex items-center gap-1">
+                <a  className="flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 48 48">
                     <path fill="#3F51B5" d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z"></path><path fill="#FFF" d="M34.368,
                     25H31v13h-5V25h-3v-4h3v-2.41c0.002-3.508,
