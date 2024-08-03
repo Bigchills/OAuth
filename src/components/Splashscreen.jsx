@@ -2,6 +2,7 @@ import React from 'react'
 import { RingLoader } from 'react-spinners'
 
 const Splashscreen = () => {
+
   return (
     <div className='h-full w-full'>
         <div className='flex flex-col justify-center items-center gap-4 h-screen'>

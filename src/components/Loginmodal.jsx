@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Loadingscreen from './Loadingscreen';
 
-const Loginmodal = ({ closeModal }) => {
+const LoginModal = ({ closeModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Start loading
 
     const loginData = {
       email,
@@ -34,31 +37,33 @@ const Loginmodal = ({ closeModal }) => {
 
       // Save the token to localStorage
       localStorage.setItem('token', data.cookie);
-      localStorage.setItem('user', JSON.stringify(data.user))
+      localStorage.setItem('user', JSON.stringify(data.user));
 
       // Redirect to the homepage
       navigate('/home');
     } catch (error) {
       console.error('Error during login:', error.message);
       setError(error.message);
+    } finally {
+      setIsLoading(false); // End loading
     }
   };
+
   return (
     <div className="w-full h-full fixed py-5 top-0 backdrop-blur-sm flex justify-center items-center">
+      {isLoading && <Loadingscreen />} {/* Show loading screen when isLoading is true */}
       <div className="w-full h-full md:h-96 shadow-md md:w-1/2 rounded-md border border-slate-400 z-10 bg-white font-semibold">
         <div className="font-medium text-center">
           <h2>Logo</h2>
         </div>
         {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <div className="flex flex-col w-3/5 mt-10 mx-auto space-y-1">
             <label className="font-medium" htmlFor="email">Email:</label>
             <input
               id="email"
               value={email}
-              onChange={(e)=>{
-                setEmail(e.target.value)
-              }}
+              onChange={(e) => setEmail(e.target.value)}
               className="bg-slate-100 rounded-lg p-3"
               placeholder="Your email"
               type="email"
@@ -71,9 +76,7 @@ const Loginmodal = ({ closeModal }) => {
             <input
               id="password"
               value={password}
-              onChange={(e)=>{
-                setPassword(e.target.value)
-              }}
+              onChange={(e) => setPassword(e.target.value)}
               className="bg-slate-100 rounded-lg p-3"
               placeholder="Your password"
               type="password"
@@ -102,4 +105,4 @@ const Loginmodal = ({ closeModal }) => {
   );
 };
 
-export default Loginmodal;
+export default LoginModal;

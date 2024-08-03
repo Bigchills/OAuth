@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, createContext  } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Mainnav from '../components/Mainnav';
 import Leftsidebar from '../components/Leftsidebar';
@@ -10,6 +10,7 @@ const Homepage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const userContext=createContext()
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -43,7 +44,7 @@ const Homepage = () => {
       if (storedUser) {
         setUser(JSON.parse(storedUser));
       } else {
-        navigate('/', { replace: true });
+        // navigate('/', { replace: true });
       }
     }
   }, [location.search, navigate]);
@@ -53,10 +54,12 @@ const Homepage = () => {
   }
 
   if (!user) {
-    return <div>Loading...</div>;
+    return <div>loading..</div>
   }
 
   return (
+
+  
     <div className=''>
       <div className='flex h-screen'>
         <Leftsidebar />
