@@ -7,12 +7,14 @@ const Newaccountmodal = ({ closeModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setIsLoading]=(false);
   const navigate = useNavigate();
 
   const DEFAULT_AVATAR_URL = 'https://cdn-icons-png.flaticon.com/512/147/147144.png';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const signupData = {
       username,
@@ -50,11 +52,14 @@ const Newaccountmodal = ({ closeModal }) => {
     } catch (error) {
       console.error('Error during signup:', error.message);
       setError(error.message);
+    }finally{
+      setIsLoading(false)
     }
   };
   
   return (
     <div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5 flex justify-center items-center">
+        {isLoading && <Loadingscreen />} 
       <div className="w-full h-full md:max-w-2xl md:max-h-[550px] z-10 bg-white font rounded-lg border border-slate-400 mx-auto overflow-y-scroll overscroll-y-none">
         <div className="font-medium text-center">logo</div>
         <div className="font-medium flex justify-center items-center">
