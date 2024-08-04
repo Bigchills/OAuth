@@ -4,6 +4,7 @@ import Mainnav from '../components/Mainnav';
 import Leftsidebar from '../components/Leftsidebar';
 import Maincontent from '../components/Maincontent';
 import RightSidebar from '../components/Rightsidebar';
+import Loadingscreen from '../components/Loadingscreen';
 
 const Homepage = () => {
   const location = useLocation();
@@ -54,7 +55,7 @@ const Homepage = () => {
   }
 
   if (!user) {
-    return <div>loading..</div>
+    return <div><Loadingscreen/></div>
   }
 
   return (
