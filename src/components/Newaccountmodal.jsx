@@ -1,34 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loadingscreen from './Loadingscreen';
 
-const NewAccountModal = ({ closeModal }) => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Correct useState initialization
-  const navigate = useNavigate();
+const Input = ({ label, id, value, onChange, type = 'text', placeholder, required = true }) => (
+  <div className="flex flex-col w-3/4 md:max-w-sm mx-auto space-y-1 mt-5">
+    <label className="font-medium" htmlFor={id}>{label}</label>
+    <input
+      id={id}
+      value={value}
+      onChange={onChange}
+      className="bg-slate-100 border-slate-600 rounded-lg p-3"
+      placeholder={placeholder}
+      type={type}
+      required={required}
+    />
+  </div>
+);
 
+const NewAccountModal = ({ closeModal }) => {
+  const [formData, setFormData] = useState({ username: '', email: '', password: '' });
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const DEFAULT_AVATAR_URL = 'https://cdn-icons-png.flaticon.com/512/147/147144.png';
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setShowModal(true);
+    }, 500); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     const signupData = {
-      username,
-      email,
+      ...formData,
       avatar: DEFAULT_AVATAR_URL,
-      password,
     };
 
     try {
       const response = await fetch('https://roomie-app-1.onrender.com/signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signupData),
       });
 
@@ -43,8 +67,6 @@ const NewAccountModal = ({ closeModal }) => {
 
       localStorage.setItem('token', data.cookie);
       localStorage.setItem('user', JSON.stringify(data.user));
-
-      // Redirect to the homepage
       navigate('/home');
     } catch (error) {
       console.error('Error during signup:', error.message);
@@ -56,66 +78,56 @@ const NewAccountModal = ({ closeModal }) => {
 
   return (
     <div className="w-full h-full fixed top-0 backdrop-blur-sm md:py-5 flex justify-center items-center">
-      {isLoading && <Loadingscreen />} {/* Show loading screen when isLoading is true */}
-      <div className="w-full h-full md:max-w-2xl md:max-h-[550px] z-10 bg-white font rounded-lg border border-slate-400 mx-auto overflow-y-scroll overscroll-y-none">
-        <div className="font-medium text-center">logo</div>
-        <div className="font-medium flex justify-center items-center">
-          <h2>Fill in your details</h2>
-        </div>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col w-3/4 md:max-w-sm mt-10 mx-auto space-y-1">
-            <label className="font-medium" htmlFor="name">Full Name:</label>
-            <input
-              id="name"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="bg-slate-100 border-slate-600 rounded-lg p-3"
+      {isLoading && <Loadingscreen />}
+      {showModal && (
+        <div className="w-full h-full md:max-w-2xl md:max-h-[550px] z-10 bg-white rounded-lg border border-slate-400 mx-auto overflow-y-scroll">
+          <div className="font-medium text-center">logo</div>
+          <div className="font-medium flex justify-center items-center">
+            <h2>Fill in your details</h2>
+          </div>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <Input
+              label="Full Name:"
+              id="username"
+              value={formData.username}
+              onChange={handleChange}
               placeholder="Your name"
-              type="text"
-              required
             />
-          </div>
-          <div className="flex flex-col w-3/4 md:max-w-sm mx-auto space-y-1 mt-5 mb-10">
-            <label className="font-medium" htmlFor="email">Email:</label>
-            <input
+            <Input
+              label="Email:"
               id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-slate-100 border-slate-600 rounded-lg p-3"
-              placeholder="Your email"
+              value={formData.email}
+              onChange={handleChange}
               type="email"
-              required
+              placeholder="Your email"
             />
-          </div>
-          <div className="flex flex-col w-3/4 md:max-w-sm mx-auto space-y-1 mt-5 mb-10">
-            <label className="font-medium" htmlFor="password">Password:</label>
-            <input
+            <Input
+              label="Password:"
               id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="bg-slate-100 border-slate-600 rounded-lg p-3"
-              placeholder="Type a password"
+              value={formData.password}
+              onChange={handleChange}
               type="password"
-              required
+              placeholder="Type a password"
             />
-          </div>
-          <div className="w-1/2 flex mx-auto space-x-5 justify-center items-center mb-5">
-            <button
-              onClick={() => closeModal(false)}
-              className="border bg-red-600 hover:bg-red-700 rounded-md text-white px-3 py-1 text-sm"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="border bg-black hover:bg-slate-800 rounded-md text-white px-3 py-1 text-sm"
-            >
-              Sign up
-            </button>
-          </div>
-        </form>
-      </div>
+            <div className="w-1/2 flex mx-auto mt-10 space-x-5 justify-center items-center mb-5">
+              <button
+                type="button"
+                onClick={() => closeModal(false)}
+                className="border bg-red-600 hover:bg-red-700 rounded-md text-white px-3 py-1 text-sm"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="border bg-black hover:bg-slate-800 rounded-md text-white px-3 py-1 text-sm"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

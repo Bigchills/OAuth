@@ -18,8 +18,9 @@ const Auth = () => {
         setOpenNewAccountModal(true);
     };
 
-    const openLogin = () => {
-        setOpenLoginModal(true);
+    const openLogin = (e) => {
+        e.preventDefault();
+        setOpenLoginModal(true)
     };
 
     return (

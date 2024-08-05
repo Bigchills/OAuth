@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Loadingscreen from './Loadingscreen';
 
@@ -7,7 +7,19 @@ const LoginModal = ({ closeModal }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const [showModal, setShowModal]=useState(false)
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setShowModal(true);
+    }, 500); 
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +63,10 @@ const LoginModal = ({ closeModal }) => {
 
   return (
     <div className="w-full h-full fixed py-5 top-0 backdrop-blur-sm flex justify-center items-center">
-      {isLoading && <Loadingscreen />} {/* Show loading screen when isLoading is true */}
+      {isLoading && <Loadingscreen />} 
+      {showModal && (
+
+ 
       <div className="w-full h-full md:h-96 shadow-md md:w-1/2 rounded-md border border-slate-400 z-10 bg-white font-semibold">
         <div className="font-medium text-center">
           <h2>Logo</h2>
@@ -101,6 +116,7 @@ const LoginModal = ({ closeModal }) => {
           </div>
         </form>
       </div>
+           )}
     </div>
   );
 };
